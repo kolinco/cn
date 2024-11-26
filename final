@@ -1,0 +1,180 @@
+en
+conf t
+int fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+router eigrp 10
+network 192.168.10.0
+network 192.168.20.0
+exit
+
+en
+conf t
+int fa0/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.2 255.255.255.0
+no shut
+exit
+router eigrp 10
+network 192.168.20.0
+network 192.168.30.0
+exit
+
+
+
+
+
+
+
+
+
+
+en
+conf t
+int fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+router eigrp 10
+network 192.168.10.0
+network 192.168.20.0
+exit
+
+
+
+en
+conf t
+int fa0/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.2 255.255.255.0
+no shut
+router eigrp 10
+network 192.168.20.0
+network 192.168.30.0
+exit
+
+
+
+
+en
+conf t
+int fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+router rip
+version 2
+network 192.168.10.0
+network 192.168.20.0
+no auto summary
+exit
+
+en
+conf t
+int fa0/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.2 255.255.255.0
+no shut
+exit
+router rip
+version 2
+network 192.168.20.0
+network 192.168.30.0
+no auto summary
+exit
+
+en
+conf t
+int fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+router ospf 1
+network 192.168.10.0 0.0.0.255 area 0
+network 192.168.20.0 0.0.0.255 area 0
+exit
+
+en
+conf t
+int fa0/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.2 255.255.255.0
+no shut
+exit
+router ospf 1
+network 192.168.20.0 0.0.0.255 area 0
+network 192.168.30.0 0.0.0.255 area 0
+exit
+
+
+
+
+en
+conf t
+int fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+ip route 192.168.30.0 255.255.255.0 192.168.20.2
+exit
+
+
+en
+conf t
+int fa0/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+int se2/0
+ip address 192.168.20.2 255.255.255.0
+no shut
+exit
+ip route 192.168.10.0 255.255.255.0 192.168.20.1
+exit
+
+
+
+
+
+en
+conf t
+ip dhcp pool cse
+network 192.168.50.0 255.255.255.0
+default-router 192.168.50.1
+dns-server 192.168.50.254
+exit
+int fa0/0
+ip address 192.168.50.1 255.255.255.0
+no shut exit
